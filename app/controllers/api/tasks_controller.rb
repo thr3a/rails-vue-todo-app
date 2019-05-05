@@ -3,7 +3,8 @@ class Api::TasksController < ApplicationController
   # GET /tasks
   def index
     # 後々のため、更新順で返します
-    @tasks = Task.order('updated_at DESC')
+    @tasks = Task.all.order('updated_at DESC')
+    render json: {tasks: @tasks} # jbuilder経由だと、なぜかNo Contentになる。。。。
   end
 
   # POST /tasks
